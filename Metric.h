@@ -17,11 +17,25 @@ if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
 #ifndef _METRIC_H
 #define _METRIC_H
 
+#include "CompareArgs.h"
+#include "RGBAImage_np.h"
+#include "LPyramid.h"
+
 class CompareArgs;
 
 // Image comparison metric using Yee's method
 // References: A Perceptual Metric for Production Testing, Hector Yee, Journal of Graphics Tools 2004
-bool Yee_Compare(CompareArgs &args);
+//bool Yee_Compare(CompareArgs &args);
 
+
+#ifdef __cplusplus
+extern "C"{
 #endif
 
+    bool Yee_Compare(CompareArgs &args);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

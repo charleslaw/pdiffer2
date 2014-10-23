@@ -27,7 +27,7 @@ class CompareArgs
 public:
 	CompareArgs();
 	~CompareArgs();
-	bool Parse_Args(int argc, char **argv);	
+	//bool Parse_Args(int argc, char **argv);	
 	void Print_Args();
 	
 	RGBAImage		*ImgA;				// Image A
@@ -47,5 +47,32 @@ public:
   // How much to down sample image before comparing, in powers of 2.
   int DownSample;
 };
+
+#ifdef __cplusplus
+extern "C"{
+#endif
+
+    CompareArgs* new_CompareArgs();
+
+    void del_CompareArgs(CompareArgs *myArgs);
+
+    //void new_RGBAImage(int w, int h, const void * imgdatav, void ** Img);
+    RGBAImage* new_RGBAImage(int w, int h, void * imgdatav);
+
+	void set__ImgA(CompareArgs* args, RGBAImage *ImgA);
+	void set__ImgB(CompareArgs* args, RGBAImage *ImgB);
+	void set__ImgDiff(CompareArgs* args, RGBAImage *ImgDiff);
+	void set__Verbose(CompareArgs* args, bool Verbose);
+	void set__LuminanceOnly(CompareArgs* args, bool LuminanceOnly);
+	void set__FieldOfView(CompareArgs* args, float FieldOfView);
+	void set__Gamma(CompareArgs* args, float Gamma);
+	void set__Luminance(CompareArgs* args, float Luminance);
+	void set__ThresholdPixels(CompareArgs* args, unsigned int ThresholdPixels);
+    void set__ColorFactor(CompareArgs* args, float ColorFactor);
+
+#ifdef __cplusplus
+}
+#endif
+
 
 #endif

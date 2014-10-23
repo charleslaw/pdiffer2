@@ -15,7 +15,7 @@ if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
 */
 
 #include "CompareArgs.h"
-#include "RGBAImage.h"
+#include "RGBAImage_np.h"
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -67,6 +67,7 @@ CompareArgs::~CompareArgs()
 	if (ImgDiff) delete ImgDiff;
 }
 
+/*
 bool CompareArgs::Parse_Args(int argc, char **argv)
 {
 	if (argc < 3) {
@@ -149,6 +150,34 @@ bool CompareArgs::Parse_Args(int argc, char **argv)
 	}
 	return true;
 }
+*/
+
+CompareArgs* new_CompareArgs(){
+    CompareArgs * new_ca = new CompareArgs();
+    return new_ca;
+}
+
+RGBAImage* new_RGBAImage(int w, int h, void * imgdatav){
+    RGBAImage * new_img = new RGBAImage(w, h, imgdatav);
+    return new_img;
+    //*Img = (void *) new_img;
+}
+
+void del_CompareArgs(CompareArgs *myArgs){myArgs->~CompareArgs();}
+
+void set__ImgA(CompareArgs* args, RGBAImage *ImgA){args->ImgA=ImgA;}
+void set__ImgB(CompareArgs* args, RGBAImage *ImgB){args->ImgB=ImgB;}
+void set__ImgDiff(CompareArgs* args, RGBAImage *ImgDiff){args->ImgDiff=ImgDiff;}
+void set__Verbose(CompareArgs* args, bool Verbose){args->Verbose=Verbose;}
+void set__LuminanceOnly(CompareArgs* args, bool LuminanceOnly){args->LuminanceOnly=LuminanceOnly;}
+void set__FieldOfView(CompareArgs* args, float FieldOfView){args->FieldOfView=FieldOfView;}
+void set__Gamma(CompareArgs* args, float Gamma){args->Gamma=Gamma;}
+void set__Luminance(CompareArgs* args, float Luminance){args->Luminance=Luminance;}
+void set__ThresholdPixels(CompareArgs* args, unsigned int ThresholdPixels){args->ThresholdPixels=ThresholdPixels;}
+void set__ColorFactor(CompareArgs* args, float ColorFactor){args->ColorFactor=ColorFactor;}
+
+
+
 
 void CompareArgs::Print_Args()
 {

@@ -1,6 +1,8 @@
 # Background
 
-This is a quick and dirty wrapper around PerceptualDiff to work with opencv images/numpy arrays.
+This is a *very* quick and *very* dirty wrapper around PerceptualDiff to work with opencv images/numpy arrays.
+
+It ignores alpha channel.
 
 # Build
 

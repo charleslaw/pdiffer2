@@ -15,10 +15,8 @@ if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
 */
 
 #include "Metric.h"
-#include "CompareArgs.h"
-#include "RGBAImage.h"
-#include "LPyramid.h"
 #include <math.h>
+#include <stdio.h>
 
 #ifndef M_PI
 #define M_PI 3.14159265f
@@ -294,17 +292,17 @@ bool Yee_Compare(CompareArgs &args)
 	sprintf(different, "%d pixels are different\n", pixels_failed);
 
         // Always output image difference if requested.
-	if (args.ImgDiff) {
-		if (args.ImgDiff->WriteToFile(args.ImgDiff->Get_Name().c_str())) {
-			args.ErrorStr += "Wrote difference image to ";
-			args.ErrorStr+= args.ImgDiff->Get_Name();
-			args.ErrorStr += "\n";
-		} else {
-			args.ErrorStr += "Could not write difference image to ";
-			args.ErrorStr+= args.ImgDiff->Get_Name();
-			args.ErrorStr += "\n";
-		}
-	}
+	//if (args.ImgDiff) {
+		//if (args.ImgDiff->WriteToFile(args.ImgDiff->Get_Name().c_str())) {
+		//	args.ErrorStr += "Wrote difference image to ";
+		//	args.ErrorStr+= args.ImgDiff->Get_Name();
+		//	args.ErrorStr += "\n";
+		//} else {
+		//	args.ErrorStr += "Could not write difference image to ";
+		//	args.ErrorStr+= args.ImgDiff->Get_Name();
+		//	args.ErrorStr += "\n";
+		//}
+	//}
 
 	if (pixels_failed < args.ThresholdPixels) {
 		args.ErrorStr = "Images are perceptually indistinguishable\n";

@@ -29,7 +29,7 @@ if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
  */
 class RGBAImage
 {
-	RGBAImage(const RGBAImage&);
+	//RGBAImage(const RGBAImage&);
 	RGBAImage& operator=(const RGBAImage&);
 public:
 	RGBAImage(int w, int h, const char *name = 0)

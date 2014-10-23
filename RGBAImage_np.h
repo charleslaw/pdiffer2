@@ -17,7 +17,7 @@ if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
 #ifndef _RGAIMAGE_H
 #define _RGBAIMAGE_H
 
-#include <string>
+#include <stdint.h>
 
 /** Class encapsulating an image containing R,G,B,A channels.
  *
@@ -29,39 +29,30 @@ if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
  */
 class RGBAImage
 {
-	//RGBAImage(const RGBAImage&);
+	RGBAImage(const RGBAImage&);
 	RGBAImage& operator=(const RGBAImage&);
 public:
-	RGBAImage(int w, int h, const char *name = 0)
-	{
-		Width = w;
-		Height = h;
-		if (name) Name = name;
-		Data = new unsigned int[w * h];
-	};
-	~RGBAImage() { if (Data) delete[] Data; }
-	unsigned char Get_Red(unsigned int i) { return (Data[i] & 0xFF); }
-	unsigned char Get_Green(unsigned int i) { return ((Data[i]>>8) & 0xFF); }
-	unsigned char Get_Blue(unsigned int i) { return ((Data[i]>>16) & 0xFF); }
-	unsigned char Get_Alpha(unsigned int i) { return ((Data[i]>>24) & 0xFF); }
-	void Set(unsigned char r, unsigned char g, unsigned char b, unsigned char a, unsigned int i)
-	{ Data[i] = r | (g << 8) | (b << 16) | (a << 24); }
-	int Get_Width(void) const { return Width; }
-	int Get_Height(void) const { return Height; }
-	void Set(int x, int y, unsigned int d) { Data[x + y * Width] = d; }
-	unsigned int Get(int x, int y) const { return Data[x + y * Width]; }
-	unsigned int Get(int i) const { return Data[i]; }
-	const std::string &Get_Name(void) const { return Name; }
-   RGBAImage* DownSample() const;
+	RGBAImage(int w, int h, void * imgdatav);
+	unsigned char Get_Red(unsigned int i);
+	unsigned char Get_Green(unsigned int i);
+	unsigned char Get_Blue(unsigned int i);
+	unsigned char Get_Alpha(unsigned int i);
+	void Set(unsigned char r, unsigned char g, unsigned char b, unsigned char a, unsigned int i);
+	int Get_Width(void) const;
+	int Get_Height(void) const;
+	void Set(int x, int y, unsigned int d);
+	unsigned int Get(int x, int y) const;
+	unsigned int Get(int i) const;
+	//const std::string &Get_Name(void) const { return Name; }
+    //RGBAImage* DownSample() const;
 	
-	bool WriteToFile(const char* filename);
-	static RGBAImage* ReadFromFile(const char* filename);
+	//bool WriteToFile(const char* filename);
+	//static RGBAImage* ReadFromFile(const char* filename);
 	
 protected:
 	int Width;
 	int Height;
-	std::string Name;
-	unsigned int *Data;
+	uint8_t *Data;
 };
 
 #endif
